@@ -1,5 +1,6 @@
 package br.com.oimenu;
 
+
 import br.com.oimenu.model.*;
 import br.com.oimenu.net.HttpsRequest;
 import com.google.gson.*;
@@ -79,24 +80,55 @@ public class OimenuClient {
 	     return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	
+	public SimpleResult transferTable(Integer code, Integer codeNew) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(code) + "/transfer", "{\"new_table\":"+String.valueOf(codeNew)+"}");
+	     return (SimpleResult) convertJson(json, SimpleResult.class);
+	}
+	
 	public SimpleResult cancelTable(Integer code) {
 	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(code) + "/cancel", null);
 	     return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	
+	public ItemResult createTableItem(Integer codeTable, OrderProduct product) {
+	     String json =  HttpsRequest.getResult(token, "POST", "table/" + String.valueOf(codeTable) + "/item", product);
+	     return (ItemResult) convertJson(json, ItemResult.class);
+	}
+	
+	public ItemResult updateTableItem(Integer codeTable, String idItem, Integer quantity, Double price) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" + idItem, "{\"quantity\":"+String.valueOf(quantity)+",\"price\":"+String.valueOf(price)+"}");
+	     return (ItemResult) convertJson(json, ItemResult.class);
+	}
+	
+	public TransferResult transferTableItem(Integer codeTable, Integer codeTableNew, String idItem) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" + idItem + "/transfer", "{\"new_table\":"+String.valueOf(codeTableNew)+"}");
+	     return (TransferResult) convertJson(json, TransferResult.class);
+	}
+	
+	public TransferResult transferTableItem(Integer codeTable, Integer codeTableNew, String idItem, Integer quantity) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" + idItem + "/transfer", "{\"new_table\":"+String.valueOf(codeTableNew)+",\"quantity\":"+String.valueOf(quantity)+"}");
+	     return (TransferResult) convertJson(json, TransferResult.class);
+	}
+	
 	public ItemResult cancelTableItem(Integer codeTable, String idItem) {
-	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" +idItem+ "/cancel", null);
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" + idItem + "/cancel", null);
 	     return (ItemResult) convertJson(json, ItemResult.class);
 	}
 	
 	public ItemResult cancelTableItem(Integer codeTable, String idItem, Integer quantity) {
-	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" +idItem+ "/cancel", "{\"quantity\":"+String.valueOf(quantity)+"}");
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(codeTable) + "/item/" + idItem + "/cancel", "{\"quantity\":"+String.valueOf(quantity)+"}");
 	     return (ItemResult) convertJson(json, ItemResult.class);
 	}
+	
 	
 	//CARD MODE
 	public SimpleResult closeCard(Integer code) {
 	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(code) + "/close", null);
+	     return (SimpleResult) convertJson(json, SimpleResult.class);
+	}
+	
+	public SimpleResult transferCard(Integer code, Integer codeNew) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(code) + "/transfer", "{\"new_card\":"+String.valueOf(codeNew)+"}");
 	     return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	
@@ -105,8 +137,28 @@ public class OimenuClient {
 	     return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	
+	public ItemResult createCardItem(Integer codeCard, OrderProduct product) {
+	     String json =  HttpsRequest.getResult(token, "POST", "card/" + String.valueOf(codeCard) + "/item", product);
+	     return (ItemResult) convertJson(json, ItemResult.class);
+	}
+	
+	public ItemResult updateCardItem(Integer codeCard, String idItem, Integer quantity, Double price) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(codeCard) + "/item/" + idItem, "{\"quantity\":"+String.valueOf(quantity)+",\"price\":"+String.valueOf(price)+"}");
+	     return (ItemResult) convertJson(json, ItemResult.class);
+	}
+	
+	public TransferResult transferCardItem(Integer codeCard, Integer codeTableNew, String idItem) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(codeCard) + "/item/" + idItem + "/transfer", "{\"new_table\":"+String.valueOf(codeTableNew)+"}");
+	     return (TransferResult) convertJson(json, TransferResult.class);
+	}
+	
+	public TransferResult transferCardItem(Integer codeCard, Integer codeTableNew, String idItem, Integer quantity) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(codeCard) + "/item/" + idItem + "/transfer", "{\"new_table\":"+String.valueOf(codeTableNew)+",\"quantity\":"+String.valueOf(quantity)+"}");
+	     return (TransferResult) convertJson(json, TransferResult.class);
+	}
+	
 	public ItemResult cancelCardItem(Integer codeCard, String idItem) {
-	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(codeCard) + "/item/" +idItem+ "/cancel", null);
+	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(codeCard) + "/item/" + idItem + "/cancel", null);
 	     return (ItemResult) convertJson(json, ItemResult.class);
 	}
 	

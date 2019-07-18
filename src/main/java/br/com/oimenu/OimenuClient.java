@@ -74,6 +74,17 @@ public class OimenuClient {
 	    return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	
+	//EVENT
+	public EventResult getAllEvents() {
+	     String json =  HttpsRequest.getResult(token, "GET", "events", null);
+	     return (EventResult) convertJson(json, EventResult.class);
+	}
+	
+	public SimpleResult setEventAsReceived(String id){
+		String json =  HttpsRequest.getResult(token, "PUT", "event/" + id + "/received", null);
+	    return (SimpleResult) convertJson(json, SimpleResult.class);
+	}
+	
 	//TABLE MODE
 	public SimpleResult closeTable(Integer code) {
 	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(code) + "/close", null);

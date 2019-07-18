@@ -23,6 +23,10 @@ public class Order {
     @Expose
     private String card = null;
     
+    @SerializedName("waiter")
+    @Expose
+    private String waiter = null;
+    
     @SerializedName("items")
     @Expose
     private List<OrderItem> items = new ArrayList<OrderItem>();
@@ -53,6 +57,13 @@ public class Order {
     }
     public void setCard(String card) {
         this.card = card;
+    }
+    
+    public String getWaiter() {
+        return waiter;
+    }
+    public void setWaiter(String waiter) {
+        this.waiter = waiter;
     }
     
     public List<OrderItem> getItems() {

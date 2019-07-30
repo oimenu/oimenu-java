@@ -101,6 +101,11 @@ public class OimenuClient {
 	     return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	
+	public SimpleResult reopenTable(Integer code) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "table/" + String.valueOf(code) + "/reopen", null);
+	     return (SimpleResult) convertJson(json, SimpleResult.class);
+	}
+	
 	public ItemResult createTableItem(Integer codeTable, OrderProduct product) {
 	     String json =  HttpsRequest.getResult(token, "POST", "table/" + String.valueOf(codeTable) + "/item", product);
 	     return (ItemResult) convertJson(json, ItemResult.class);
@@ -145,6 +150,11 @@ public class OimenuClient {
 	
 	public SimpleResult cancelCard(Integer code) {
 	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(code) + "/cancel", null);
+	     return (SimpleResult) convertJson(json, SimpleResult.class);
+	}
+	
+	public SimpleResult reopenCard(Integer code) {
+	     String json =  HttpsRequest.getResult(token, "PUT", "card/" + String.valueOf(code) + "/reopen", null);
 	     return (SimpleResult) convertJson(json, SimpleResult.class);
 	}
 	

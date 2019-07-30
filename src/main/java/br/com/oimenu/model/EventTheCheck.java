@@ -16,6 +16,10 @@ public class EventTheCheck {
     @Expose
     private String waiter = "";
     
+    @SerializedName("document")
+    @Expose
+    private String document = "";
+    
     @SerializedName("split_with")
     @Expose
     private String splitWith = "";
@@ -39,6 +43,13 @@ public class EventTheCheck {
     }
     public void setWaiter(String waiter) {
         this.waiter = waiter;
+    }
+    
+    public String getDocument() {
+        return document;
+    }
+    public void setDocument(String document) {
+        this.document = document;
     }
     
     public String getSplitWith() {

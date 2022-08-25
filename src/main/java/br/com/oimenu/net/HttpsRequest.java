@@ -13,16 +13,12 @@ import com.google.gson.Gson;
 
 
 public class HttpsRequest {
-	protected static String apiUrl = "https://developers.oimenu.com.br";
-	protected static String apiVersion = "v1";
-	
-	public static String getResult(String token, String method, String api, Object postObject) {
+	public static String getResult(String baseUrl, String token, String method, String api, Object postObject) {
 		URL url = null;
 		InputStream is = null;
 		String json;
 		try {
-			
-			url = new URL(apiUrl + "/api/" + apiVersion + "/" + api);
+			url = new URL(baseUrl + "/" + api);
 			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 			con.setRequestMethod(method);
 			con.setConnectTimeout(5000);
@@ -55,22 +51,20 @@ public class HttpsRequest {
 			else
 				is = con.getInputStream();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 10240);
+		        BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 10240);
 
-            StringBuilder builder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                builder.append(line);
-            }
+	            	StringBuilder builder = new StringBuilder();
+            		String line;
+            		while ((line = reader.readLine()) != null) {
+                		builder.append(line);
+            		}
             
-            json = builder.toString();
+            		json = builder.toString();
 		} catch (Exception e) {
 			//e.printStackTrace();
 			json = "{\"success\":\"false\",\"message\":\""+e.getLocalizedMessage()+"\"}";
 		}
 		
 		return json;
-		
 	}
-    
 }

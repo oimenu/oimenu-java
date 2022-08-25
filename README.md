@@ -12,7 +12,7 @@ Adicione essa dependencia ao POM do seu projeto:
 <dependency>
   <groupId>br.com.oimenu</groupId>
   <artifactId>oimenu-java</artifactId>
-  <version>2.0.2</version>
+  <version>2.0.3</version>
 </dependency>
 ```
 
@@ -32,8 +32,8 @@ O OiMenu SDK necessita que as seguintes bibliotecas estejam adicionadas ao seu p
 Um exemplo de uso do SDK é:
 
 ```java
-// definir o token de acesso
-OimenuClient oimenuClient = new OimenuClient("OIMENU-TOKEN");
+// definir o token de acesso e URL Base ("https://developers.oimenu.com.br/api/v1" ou "http://IP:PORTA/api/v1")
+OimenuClient oimenuClient = new OimenuClient("OIMENU-TOKEN", "OIMENU-BASE-URL");
 
 // listar pedidos pendentes
 OrderResult result = oimenuClient.getAllOrders();

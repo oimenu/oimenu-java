@@ -8,6 +8,7 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.net.HttpURLConnection;
 
 import com.google.gson.Gson;
 
@@ -19,7 +20,12 @@ public class HttpsRequest {
 		String json;
 		try {
 			url = new URL(baseUrl + "/" + api);
-			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+			HttpURLConnection con;
+			if (baseUrl.startsWith("https")) {
+				con = (HttpsURLConnection) url.openConnection();
+			} else {
+				con = (HttpURLConnection) url.openConnection();
+			}
 			con.setRequestMethod(method);
 			con.setConnectTimeout(5000);
 			con.setReadTimeout(5000);
